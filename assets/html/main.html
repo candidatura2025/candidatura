@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidatura a Tesorero - ICACS</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <header>
+        <img src="https://icacs.com/wp-content/uploads/2019/09/logo-ICACS.png" 
+             alt="ICACS - Ilustre Colegio de Abogados de Castellón" 
+             class="logo">
+    </header>
+    
+    <nav class="barra-navegacion">
+        <ul>
+            <li><a href="#equipo">Equipo Candidatura</a></li>
+            <li><a href="#programa">Programa</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+    
+    <section class="imagen-destacada">
+        <img src="../img/grupo_prueba.jpg" alt="Imagen Destacada">
+    </section>
+
+    <section id="equipo" class="equipo">
+        <h2>Equipo de Candidatura</h2>
+        <div class="miembros">
+            <div class="miembro">
+                <a href="#"><img src="../img/candidatos/pedro_olucha_tesorero.jpg" alt="Nombre 1"></a>
+                <h3>Nombre 1</h3>
+                <p>Cargo 1</p>
+            </div>
+            <div class="miembro">
+                <a href="#"><img src="../assets/img/miembro2.jpg" alt="Nombre 2"></a>
+                <h3>Nombre 2</h3>
+                <p>Cargo 2</p>
+            </div>
+            <div class="miembro">
+                <a href="#"><img src="../assets/img/miembro3.jpg" alt="Nombre 3"></a>
+                <h3>Nombre 3</h3>
+                <p>Cargo 3</p>
+            </div>
+        </div>
+    </section>
+
+        
+    <section id="programa" class="programa">
+        <h2>Programa Electoral</h2>
+    
+        <div class="descargas">
+            <a href="../documentos/programa_largo.pdf" download="programa_largo.pdf" class="btn-descarga">
+                📥 Descarga el Programa Extenso
+            </a>
+            <a href="../documentos/programa_corto.pdf" download="programa_corto.pdf" class="btn-descarga">
+                📥 Descarga el Programa Reducido
+            </a>
+            
+        </div>
+        
+
+        <div class="punto">
+            <h3 onclick="toggleDetalle(this)">📌 Transparencia Financiera</h3>
+            <p class="detalle">Explicación sobre la transparencia en la gestión económica.</p>
+        </div>
+        <div class="punto">
+            <h3 onclick="toggleDetalle(this)">📌 Digitalización del Colegio</h3>
+            <p class="detalle">Modernización de los sistemas administrativos.</p>
+        </div>
+        <div class="punto">
+            <h3 onclick="toggleDetalle(this)">📌 Apoyo a Jóvenes Abogados</h3>
+            <p class="detalle">Medidas para facilitar el acceso al ejercicio profesional.</p>
+        </div>
+    
+    </section>
+    
+    <section id="contacto" class="contacto">
+        <iframe src="https://forms.gle/49bUmhWRYv8QSshR6" 
+                width="100%" height="600px" frameborder="0" marginheight="0" marginwidth="0">
+            Cargando…
+        </iframe>
+    </section>
+    
+    
+    <p id="resultado"></p> <!-- Aquí se mostrará el mensaje de éxito o error -->
+    
+    
+    
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
