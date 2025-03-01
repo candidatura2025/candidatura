@@ -1,4 +1,5 @@
 /* Paleta de colores basada en la imagen */
+/* Paleta de colores basada en la imagen */
 :root {
     --verde-oscuro: #16543e;
     --verde-claro: #4a7c59;
@@ -17,7 +18,7 @@ body {
 }
 
 header {
-    background: #16543e;
+    background: var(--verde-oscuro);
     padding: 20px;
     display: flex;
     justify-content: center;
@@ -25,10 +26,9 @@ header {
 }
 
 .logo {
-    max-width: 600px; /* Aumentado de 300px a 400px */
+    max-width: 600px;
     height: auto;
 }
-
 
 .equipo {
     padding: 40px 20px;
@@ -59,6 +59,10 @@ header {
 
 .miembro img {
     width: 100%;
+    height: auto;
+    max-width: 1285px;
+    max-height: 1700px;
+    object-fit: cover; /* Para que se recorte sin distorsión */
     border-radius: 10px;
 }
 
@@ -123,7 +127,7 @@ header {
 }
 
 .contacto h2 {
-    color: #16543e;
+    color: var(--verde-oscuro);
 }
 
 .contacto p {
@@ -161,7 +165,7 @@ textarea {
 }
 
 button {
-    background: #16543e;
+    background: var(--verde-oscuro);
     color: white;
     padding: 10px;
     border: none;
@@ -173,7 +177,7 @@ button {
 }
 
 button:hover {
-    background: #4a7c59;
+    background: var(--verde-claro);
 }
 
 /* Botones de descarga */
@@ -185,7 +189,7 @@ button:hover {
 }
 
 .btn-descarga {
-    background: #16543e;
+    background: var(--verde-oscuro);
     color: white;
     text-decoration: none;
     padding: 12px 20px;
@@ -196,12 +200,12 @@ button:hover {
 }
 
 .btn-descarga:hover {
-    background: #4a7c59;
+    background: var(--verde-claro);
 }
 
 /* Barra de navegación */
 .barra-navegacion {
-    background: #16543e;
+    background: var(--verde-oscuro);
     text-align: center;
     padding: 10px 0;
     position: sticky;
@@ -233,7 +237,7 @@ button:hover {
 }
 
 .barra-navegacion ul li a:hover {
-    background: #4a7c59;
+    background: var(--verde-claro);
     border-radius: 5px;
 }
 
