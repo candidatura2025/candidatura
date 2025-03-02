@@ -29,48 +29,88 @@
 
     <section id="equipo" class="equipo">
         <h2>Equipo de Candidatura</h2>
-        <div class="miembros">
-            <div class="miembro">
-                <a href="#"><img src="./img/maria.jpg" alt="Nombre 1"></a>
-                <h3>MARÍA SEBASTIÁ GÓMEZ</h3>
-                <p>Diputada 1º (Vicedecana)</p>
+    
+        <div class="grupo">
+            <div class="miembros">
+                <div class="miembro" data-id="maria">
+                    <img src="./img/maria.jpg" alt="María Sebastía Gómez">
+                    <h3>MARÍA SEBASTIÁ GÓMEZ</h3>
+                    <p>Diputada 1º (Vicedecana)</p>
+                </div>
+                <div class="miembro" data-id="josefina">
+                    <img src="./img/joseFina.jpg" alt="Josefina Rodríguez">
+                    <h3>JOSEFINA Mª PURIFICACIÓN RODRÍGUEZ GARCÍA</h3>
+                    <p>Diputada 2º</p>
+                </div>
+                <div class="miembro" data-id="guillermo">
+                    <img src="./img/guillermo.jpg" alt="Guillermo Sangüesa">
+                    <h3>GUILLERMO SANGÜESA TERUEL</h3>
+                    <p>Diputado 3º</p>
+                </div>
             </div>
-            <div class="miembro">
-                <a href="#"><img src="./img/joseFina.jpg" alt="Nombre 2"></a>
-                <h3>JOSEFINA Mª PURIFICACIÓN RODRÍGUEZ GARCÍA</h3>
-                <p>Diputada 2º</p>
-            </div>
-            <div class="miembro">
-                <a href="#"><img src="./img/guillermo.jpg" alt="Nombre 3"></a>
-                <h3>GUILLERMO SANGÜESA TERUEL</h3>
-                <p>Diputado 3º</p>
-            </div>
+            <div class="detalle-miembro"></div>
         </div>
-        <div class="miembros">
-            <div class="miembro">
-                <a href="#"><img src="./img/cristina.jpg" alt="Nombre 1"></a>
-                <h3>CRISTINA SANCHO MARQUÉS</h3>
-                <p>Diputada 4º</p>
+    
+        <div class="grupo">
+            <div class="miembros">
+                <div class="miembro" data-id="cristina">
+                    <img src="./img/cristina.jpg" alt="Cristina Sancho">
+                    <h3>CRISTINA SANCHO MARQUÉS</h3>
+                    <p>Diputada 4º</p>
+                </div>
+                <div class="miembro" data-id="javier">
+                    <img src="./img/javier.jpg" alt="Francisco Javier Serra">
+                    <h3>FRANCISCO JAVIER SERRA OCHOA</h3>
+                    <p>Diputado 5º</p>
+                </div>
+                <div class="miembro" data-id="pedro">
+                    <img src="./img/pedro.jpg" alt="Pedro Pablo Olucha">
+                    <h3>PEDRO PABLO OLUCHA MARZÁ</h3>
+                    <p>Tesorero</p>
+                </div>
             </div>
-            <div class="miembro">
-                <a href="#"><img src="./img/javier.jpg" alt="Nombre 2"></a>
-                <h3>FRANCISCO JAVIER SERRA OCHOA</h3>
-                <p>Diputado 5º</p>
-            </div>
-            <div class="miembro">
-                <a href="#"><img src="./img/pedro.jpg" alt="Nombre 3"></a>
-                <h3>PEDRO PABLO OLUCHA MARZÁ</h3>
-                <p>Tesorero</p>
-            </div>
+            <div class="detalle-miembro"></div>
         </div>
-        <div class="miembros">
-            <div class="miembro">
-                <a href="#"><img src="./img/veronica.jpg" alt="Nombre 1"></a>
-                <h3>VERÓNICA RAMOS RUBERT</h3>
-                <p>Bibliotecaria</p>
+    
+        <div class="grupo">
+            <div class="miembros">
+                <div class="miembro" data-id="veronica">
+                    <img src="./img/veronica.jpg" alt="Verónica Ramos">
+                    <h3>VERÓNICA RAMOS RUBERT</h3>
+                    <p>Bibliotecaria</p>
+                </div>
             </div>
+            <div class="detalle-miembro"></div>
         </div>
     </section>
+
+    
+    
+
+    <style>
+        .detalle-miembro {
+            display: none;
+            background: var(--blanco);
+            color: var(--negro);
+            padding: 20px;
+            margin-top: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .miembro.activo {
+            border: 3px solid var(--verde-oscuro);
+            background: var(--verde-claro);
+        }
+    </style>
+    
+
 
         
     <section id="programa" class="programa">
@@ -130,7 +170,100 @@
     
     
     
-
-    <script src="./js/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("✅ Script cargado correctamente.");
+            activarEventosMiembros();
+            
+            // Detectar cambios en el hash y ejecutarlo SIEMPRE
+            window.addEventListener("hashchange", manejarCambioDeHash);
+            
+            // Si la página ya tiene un hash al cargar, lo activamos
+            manejarCambioDeHash();
+        });
+    
+        function activarEventosMiembros() {
+            console.log("🎯 Activando eventos en miembros...");
+            document.querySelectorAll(".miembro").forEach(miembro => {
+                miembro.addEventListener("click", function () {
+                    let id = miembro.getAttribute("data-id");
+                    console.log(`📌 Click en ${id}`);
+    
+                    // Si ya estamos en el mismo hash, lo quitamos y volvemos a poner para forzar el evento
+                    if (window.location.hash === `#${id}`) {
+                        console.log("🔄 Reset de hash para forzar evento");
+                        window.location.hash = "";
+                        setTimeout(() => {
+                            window.location.hash = `#${id}`;
+                        }, 50);
+                    } else {
+                        window.location.hash = `#${id}`;
+                    }
+                });
+            });
+        }
+    
+        function toggleDetalleMiembro(element, id) {
+            console.log(`🟢 toggleDetalleMiembro ejecutado para ${id}`);
+    
+            const detalles = {
+                "javier": `<h3>Francisco Javier Serra Ochoa</h3>
+                        <p><strong>Colegiado:</strong> 3.745 (año 2019)</p>
+                        <p><strong>Actividad:</strong> Civil, Penal y Familia</p>
+                        <p><strong>Turno de Oficio:</strong> Desde 2023</p>
+                        <p><strong>Cargo:</strong> Secretario de la Comisión Ejecutiva de la Sección del Turno de Oficio del ICACS</p>`,
+    
+                "pedro": `<h3>Pedro P. Olucha Marzá</h3>
+                        <p><strong>Colegiado:</strong> ICACS 1289 (Año 1989)</p>
+                        <p><strong>Actividad:</strong> Civil, Mediación, Sucesiones, Fiscal y Mercantil</p>`,
+    
+                "guillermo": `<h3>Guillermo Sangüesa Teruel</h3>
+                            <p><strong>Colegiado:</strong> 2.504 (año 2004)</p>
+                            <p><strong>Actividad:</strong> Civil, Penal y Laboral</p>
+                            <p><strong>Turno de Oficio:</strong> Desde 2008</p>`
+            };
+    
+            // Encontrar el grupo del miembro seleccionado
+            const grupo = element.closest('.grupo');
+            const infoDiv = grupo.querySelector(".detalle-miembro");
+    
+            // Si el mismo miembro ya está abierto, se oculta
+            if (infoDiv.style.display === "block" && infoDiv.getAttribute("data-miembro") === id) {
+                console.log(`❌ Cerrando info de ${id}`);
+                infoDiv.style.display = "none";
+                document.querySelectorAll('.miembro').forEach(m => m.classList.remove('activo'));
+                return;
+            }
+    
+            // Mostrar la información
+            console.log(`✅ Mostrando info de ${id}`);
+            infoDiv.innerHTML = detalles[id] || "<p>Información no disponible.</p>";
+            infoDiv.style.display = "block";
+            infoDiv.setAttribute("data-miembro", id);
+    
+            // Quitar la clase activo de todos los miembros
+            document.querySelectorAll('.miembro').forEach(m => m.classList.remove('activo'));
+    
+            // Agregar la clase activo al miembro seleccionado
+            element.classList.add('activo');
+        }
+    
+        function manejarCambioDeHash() {
+            let hash = window.location.hash.substring(1);
+            console.log(`🔎 manejando cambio de hash: ${hash}`);
+    
+            if (hash) {
+                let elemento = document.querySelector(`[data-id="${hash}"]`);
+                if (elemento) {
+                    console.log(`📌 Activando hash en ${hash}`);
+                    toggleDetalleMiembro(elemento, hash);
+                }
+            }
+        }
+    </script>
+    
+    
+    
+    <!--<script src="./js/main.js"></script>-->
 </body>
 </html>
