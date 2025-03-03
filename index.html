@@ -176,6 +176,10 @@
     
     
     <script>
+        function toggleDetalle(element) {
+            let detalle = element.nextElementSibling;
+            detalle.style.display = detalle.style.display === "block" ? "none" : "block";
+        }
         document.addEventListener("DOMContentLoaded", function () {
             console.log("✅ Script cargado correctamente.");
             activarEventosMiembros();
@@ -276,13 +280,6 @@
             }
         }
     </script>
-    
-    
-    
-    <script src="./js/main.js"></script>
-</body>
-</html>
-
     
     
     
