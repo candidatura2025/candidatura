@@ -203,142 +203,104 @@
     
     
     
-    <script>
-        function toggleDetalle(element) {
-            let detalle = element.nextElementSibling;
-            detalle.style.display = detalle.style.display === "block" ? "none" : "block";
-        }
-        document.addEventListener("DOMContentLoaded", function () {
-            console.log("✅ Script cargado correctamente.");
-            activarEventosMiembros();
-            
-            // Detectar cambios en el hash y ejecutarlo SIEMPRE
-            window.addEventListener("hashchange", manejarCambioDeHash);
-            
-            // Si la página ya tiene un hash al cargar, lo activamos
-            manejarCambioDeHash();
-        });
-    
-        function activarEventosMiembros() {
-            console.log("🎯 Activando eventos en miembros...");
-            document.querySelectorAll(".miembro").forEach(miembro => {
-                miembro.addEventListener("click", function () {
-                    let id = miembro.getAttribute("data-id");
-                    console.log(📌 Click en ${id});
-    
-                    // Si ya estamos en el mismo hash, lo quitamos y volvemos a poner para forzar el evento
-                    if (window.location.hash === #${id}) {
-                        console.log("🔄 Reset de hash para forzar evento");
-                        window.location.hash = "";
-                        setTimeout(() => {
-                            window.location.hash = #${id};
-                        }, 50);
-                    } else {
-                        window.location.hash = #${id};
-                    }
-                });
-            });
-        }
-    
-        function toggleDetalleMiembro(element, id) {
-            console.log(🟢 toggleDetalleMiembro ejecutado para ${id});
-    
-            const detalles = {
-                "josefina": <h3>Josefina María Purificación Rodríguez García</h3>
-                        <p><strong>Colegiado:</strong> 734 (año 1981)</p>
-                        <p><strong>Actividad:</strong> Derecho del Trabajo y de la Seguridad Social</p>
-                        <p><strong>Cargo:</strong> Miembro de la Junta de Gobierno del Ilte. Colegio de Abogados de Castellón desde abril de 2017, desempeñando los cargos de diputada tercera y diputada segunda.</p>
-                        <p>Ha sido un honor poder representar los intereses de todos los colegiados en defensa de la mejora de las condiciones del ejercicio de la abogacía en una sociedad cada vez más compleja, que nos enfrenta con nuevos retos y exige de nuestro desempeño profesional un alto rigor.</p>
-                        <p>Tengo la convicción de que ganar el futuro exige un equilibrio entre la moderación, la transparencia en la gestión y la actitud reivindicativa que nos lleve a posicionar nuestro oficio en el lugar que se merece, tanto por lo que a reconocimiento social y económico se refiere, como a la protección de nuestros derechos; especialmente, los derechos pasivos que puedan garantizar, para aquellos compañeros y compañeras que así lo deseen, abandonar el ejercicio de la profesión teniendo garantizado un retiro digno.</p>
-                        <p>Desde el punto de vista de la rama del derecho a la que me dedico incansablemente desde hace más de 40 años considero fundamental revitalizar la sección de Derecho del Trabajo, con la creación de un Foro Social, que sirva de punto de encuentro formativo y de intercambio de experiencias entre todos aquellos que ejercemos nuestro trabajo en una jurisdicción tan especializada.</p>,
-                
-                "cristina": <h3>Cristina Sancho Marqués</h3>
-                        <p><strong>Colegiado:</strong> 3.146 (año 2013)</p>
-                        <p><strong>Actividad:</strong> Civil, Penal y Familia</p>
-                        <p><strong>Turno de Oficio:</strong> Desde 2015</p>
-                        <p><strong>Cargo:</strong> Presidenta de la agrupación de Jóvenes Abogados de Castellón 2019-2022 y actual Tesorera de la Agrupación de Abogados de Castellón.</p>
-                        <p>Comprometida con la profesión y sensible a las necesidades de los compañeros/as, siempre he estado involucrada en mayor o menor medida con la abogacía institucional. He compaginado mi carrera profesional con ser miembro de la Agrupación de la Joven Abogacía (AJA), a la que accedí primero como Secretaria, después como Presidenta y en la actualidad como Tesorera, gracias a la confianza depositada por todos mis compañeros.</p>
-                        <p>Ello me permitió conocer y participar en la Confederación Española de la Abogacía Joven (CEAJ), pudiendo ser muy consciente de todas las necesidades e inquietudes de todos los compañeros/as, especialmente las de los más jóvenes cuando iniciamos esta apasionante profesión. El participar trimestralmente en CEAJ me dio la posibilidad de contrastar y comparar los retos y necesidades de todos los compañeros/as dentro del panorama nacional, pudiendo evaluarlas y compararlas con las nuestras propias.</p>
-                        <p>Como abogada suelo entender y conectar bien con mis clientes, y soy muy sensible a sus necesidades y preocupaciones, lo cual me facilita tener una buena relación de confianza con ellos. Creo que, si finalmente resultase electa, seré capaz de trasladar esta misma empatía a la relación con los compañeros/as, trabajando desde la Junta de Gobierno para intentar cubrir todas las necesidades y preocupaciones que tenemos como colectivo.</p>,
-                
-                "maria": <h3>María Sebastiá Gómez</h3>
-                        <p><strong>Colegiado:</strong> 1144 (año 1988)</p>
-                        <p><strong>Actividad:</strong> Civil , familia, responsabilidad civil y penal.</p>
-                        <p><strong>Turno de Oficio:</strong> Desde 1988 </p>
-                        <p><strong>Cargo:</strong>Miembro de la Comisión de turno de oficio del CVCA, Miembro de la comisión de violencia de genero del Consejo General de la abogacía española en representación del consejo Valenciano de Colegios de abogados y Miembro de la Comisión de violencia de genero de la Subdelegación del gobierno de Castellón en nombre del Icacs. </p>
-                        <p>Mis responsabilidades dentro de las juntas de gobierno a las que he pertenecido han sido todas en la gestión del turno de oficio, siendo mi prioridad el reivindicar una remuneración digna para todos los compañeros que nos dedicamos a prestar este servicio público, intentando que el mismo se desarrolle en las mejores condiciones no solo económicas sino de reconocimiento del trabajo que se hace en favor de la ciudadanía más desfavorecida. Mi trabajo en este ámbito consiste fundamentalmente en coordinar con la comisión de asistencia jurídica gratuita la gestión de los expedientes con asistencia a las reuniones mensuales de la misma, y trabajar en la comisión del turno del CVCA para elevar a la Conselleria los problemas que nos encontramos en la prestación del servicio así como la inclusión de nuevas actuaciones en el baremo y su actualización.</p>,
-                        
-                "veronica": <h3>Verónica Ramos Rubert</h3>
-                        <p><strong>Colegiado:</strong> 1469 (año 1991)</p>
-                        <p><strong>Actividad:</strong> Civil (especialmente derecho de familia) Penal y Mercantil</p>
-                        <p><strong>Turno de Oficio:</strong> Desde 1992</p>
-                        <p><strong>Cargo:</strong> Secretaria de la Junta de la AJA ,1994 a 1998.</p>
-                        <p>Reivindicando la formación práctica y la colaboración con los compañeros en la resolución de los asuntos, tal y como se hacía cuando comencé, estrechando lazos y abriendo firmes sendas entre todos. Nuestra unión junto con la actualización de nuestros honorarios terminará con el empobrecimiento que asola a nuestra profesión.</p>,
-        
-                "javier": <h3>Francisco Javier Serra Ochoa</h3>
-                        <p><strong>Colegiado:</strong> 3.745 (año 2019)</p>
-                        <p><strong>Actividad:</strong> Civil, Penal y Familia</p>
-                        <p><strong>Turno de Oficio:</strong> Desde 2023</p>
-                        <p><strong>Cargo:</strong> Secretario de la Comisión Ejecutiva de la Sección del Turno de Oficio del ICACS</p>
-                        <p>Desde siempre he participado activamente en las organizaciones de las que he formado parte. Creo que la implicación y el trabajo son esenciales para el progreso de la sociedad.</p>
-                        <p>Desde que comencé mi ejercicio profesional he participado de la vida colegial para tratar de mejorar las condiciones de nuestra profesión. Ello me llevó a postularme al puesto de Secretario de la Sección del Turno de Oficio, desde el que trabajo para mejorar las condiciones en las que todos los compañeros llevamos a cabo esa labor tan esencial para nuestra sociedad y nuestro Estado de Derecho.</p>
-                        <p>Por ello, quiero formar parte de la Junta de Gobierno de nuestro Colegio, para continuar trabajando por mejorar nuestras condiciones y engrandecer la noble profesión que ejercemos.</p>,
-    
-                "pedro": <h3>Pedro P. Olucha Marzá</h3>
-                        <p><strong>Colegiado:</strong> ICACS 1289 (Año 1989)</p>
-                        <p><strong>Actividad:</strong> Civil, Mediación, Sucesiones, Fiscal y Mercantil</p>
-                        <p>Para mí ha sido un honor ejercer las funciones de Tesorero del ICACS y contar con la confianza de mis compañeros durante todos estos años.</p>
-                        <p>Siempre he mantenido y, si soy reelegido, seguiré manteniendo un criterio de prudencia y transparencia en la gestión de las cuentas colegiales. Estoy convencido de que estos principios deben guiar la administración patrimonial de nuestra entidad.</p>
-                        <p>Gracias a la labor de quienes nos han precedido, nuestra entidad goza de una sólida situación financiera, lo que nos permite afrontar con recursos propios, en gran medida, los retos que surjan para seguir impulsando el ejercicio de nuestra profesión.</p>,
-    
-                "guillermo": <h3>Guillermo Sangüesa Teruel</h3>
-                            <p><strong>Colegiado:</strong> 2.504 (año 2004)</p>
-                            <p><strong>Actividad:</strong> Civil, Penal y Laboral</p>
-                            <p><strong>Turno de Oficio:</strong> Desde 2008</p>
-                            <p><strong>Cargo:</strong> Vicepresidente de l’Agrupació d’Advocats del Maestrat</p>
-                            <p>Como miembro de la Comisión Ejecutiva de l’Agrupació d’Advocats del Maestrat, de la Junta de Gobierno, y en su día de la AJA, siempre he procurado velar por los intereses de los compañeros en el ejercicio de la profesión, y en especial, de la particularidad y circunstancias propias del partido judicial de Vinarós, poniendo en valor la profesionalidad y preparación de los profesionales que ejercemos el turno de oficio.</p>
-                            <p>Siempre hemos defendido y luchado por un servicio de calidad, con una formación permanente y, sobre todo, por el trato cercano, inmediato y de proximidad con el justiciable.</p>
-                            <p>Considero que debemos defender una atención cercana y personal con los clientes, tanto del turno como los privados, solamente así, lograremos mantener y aumentar la excelencia en la defensa de los intereses que nos son confiados.</p>
-            };
-    
-            // Encontrar el grupo del miembro seleccionado
-            const grupo = element.closest('.grupo');
-            const infoDiv = grupo.querySelector(".detalle-miembro");
-    
-            // Si el mismo miembro ya está abierto, se oculta
-            if (infoDiv.style.display === "block" && infoDiv.getAttribute("data-miembro") === id) {
-                console.log(❌ Cerrando info de ${id});
-                infoDiv.style.display = "none";
-                document.querySelectorAll('.miembro').forEach(m => m.classList.remove('activo'));
-                return;
-            }
-    
-            // Mostrar la información
-            console.log(✅ Mostrando info de ${id});
-            infoDiv.innerHTML = detalles[id] || "<p>Información no disponible.</p>";
-            infoDiv.style.display = "block";
-            infoDiv.setAttribute("data-miembro", id);
-    
-            // Quitar la clase activo de todos los miembros
-            document.querySelectorAll('.miembro').forEach(m => m.classList.remove('activo'));
-    
-            // Agregar la clase activo al miembro seleccionado
-            element.classList.add('activo');
-        }
-    
-        function manejarCambioDeHash() {
-            let hash = window.location.hash.substring(1);
-            console.log(🔎 manejando cambio de hash: ${hash});
-    
-            if (hash) {
-                let elemento = document.querySelector([data-id="${hash}"]);
-                if (elemento) {
-                    console.log(📌 Activando hash en ${hash});
-                    toggleDetalleMiembro(elemento, hash);
+<script>
+    function toggleDetalle(element) {
+        let detalle = element.nextElementSibling;
+        detalle.style.display = detalle.style.display === "block" ? "none" : "block";
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log("✅ Script cargado correctamente.");
+        activarEventosMiembros();
+
+        // Detectar cambios en el hash y ejecutarlo siempre
+        window.addEventListener("hashchange", manejarCambioDeHash);
+
+        // Si la página ya tiene un hash al cargar, lo activamos
+        manejarCambioDeHash();
+    });
+
+    function activarEventosMiembros() {
+        console.log("🎯 Activando eventos en miembros...");
+        document.querySelectorAll(".miembro").forEach(miembro => {
+            miembro.addEventListener("click", function () {
+                let id = miembro.getAttribute("data-id");
+                console.log(`📌 Click en ${id}`);
+
+                // Si ya estamos en el mismo hash, lo quitamos y volvemos a poner para forzar el evento
+                if (window.location.hash === `#${id}`) {
+                    console.log("🔄 Reset de hash para forzar evento");
+                    window.location.hash = "";
+                    setTimeout(() => {
+                        window.location.hash = `#${id}`;
+                    }, 50);
+                } else {
+                    window.location.hash = `#${id}`;
                 }
+            });
+        });
+    }
+
+    function toggleDetalleMiembro(element, id) {
+        console.log(`🟢 toggleDetalleMiembro ejecutado para ${id}`);
+
+        const detalles = {
+            "josefina": `
+                <h3>Josefina María Purificación Rodríguez García</h3>
+                <p><strong>Colegiado:</strong> 734 (año 1981)</p>
+                <p><strong>Actividad:</strong> Derecho del Trabajo y de la Seguridad Social</p>
+                <p><strong>Cargo:</strong> Miembro de la Junta de Gobierno del Ilte. Colegio de Abogados de Castellón desde abril de 2017.</p>
+            `,
+            "cristina": `
+                <h3>Cristina Sancho Marqués</h3>
+                <p><strong>Colegiado:</strong> 3.146 (año 2013)</p>
+                <p><strong>Actividad:</strong> Civil, Penal y Familia</p>
+            `,
+            "maria": `
+                <h3>María Sebastiá Gómez</h3>
+                <p><strong>Colegiado:</strong> 1144 (año 1988)</p>
+                <p><strong>Actividad:</strong> Civil, familia, responsabilidad civil y penal.</p>
+            `
+        };
+
+        // Encontrar el grupo del miembro seleccionado
+        const grupo = element.closest('.grupo');
+        const infoDiv = grupo.querySelector(".detalle-miembro");
+
+        // Si el mismo miembro ya está abierto, se oculta
+        if (infoDiv.style.display === "block" && infoDiv.getAttribute("data-miembro") === id) {
+            console.log(`❌ Cerrando info de ${id}`);
+            infoDiv.style.display = "none";
+            document.querySelectorAll('.miembro').forEach(m => m.classList.remove('activo'));
+            return;
+        }
+
+        // Mostrar la información
+        console.log(`✅ Mostrando info de ${id}`);
+        infoDiv.innerHTML = detalles[id] || "<p>Información no disponible.</p>";
+        infoDiv.style.display = "block";
+        infoDiv.setAttribute("data-miembro", id);
+
+        // Quitar la clase activo de todos los miembros
+        document.querySelectorAll('.miembro').forEach(m => m.classList.remove('activo'));
+
+        // Agregar la clase activo al miembro seleccionado
+        element.classList.add('activo');
+    }
+
+    function manejarCambioDeHash() {
+        let hash = window.location.hash.substring(1);
+        console.log(`🔎 manejando cambio de hash: ${hash}`);
+
+        if (hash) {
+            let elemento = document.querySelector(`[data-id="${hash}"]`);
+            if (elemento) {
+                console.log(`📌 Activando hash en ${hash}`);
+                toggleDetalleMiembro(elemento, hash);
             }
         }
-    </script>
+    }
+</script>
     
     
     
