@@ -111,14 +111,53 @@
             transition: all 0.3s ease-in-out;
         }
 
-        .miembro {
-            cursor: pointer;
-            padding: 10px;
-            border-radius: 10px;
-            transition: background 0.3s ease-in-out;
-            text-align: center;
+        /* Contenedor de los miembros con espacio lateral */
+        .miembros {
+            display: flex;
+            justify-content: center; /* Centra los elementos */
+            align-items: stretch;
+            flex-wrap: wrap;
+            gap: 20px; /* Espaciado uniforme entre los rectángulos */
         }
 
+        /* Tarjeta de cada miembro */
+        .miembro {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            background: #ccc;
+            padding: 10px;
+            border-radius: 10px;
+            width: 300px; /* Ajusta según tu diseño */
+            min-height: 500px; /* Ajusta el tamaño según sea necesario */
+            margin: 10px; /* Espaciado lateral adicional si es necesario */
+        }
+
+        /* Asegurar que todos los nombres tengan el mismo tamaño */
+        .miembro h3 {
+            min-height: 3.5em; /* Ajusta según el tamaño del nombre más largo */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            white-space: normal; /* Permite que los nombres largos se dividan en varias líneas */
+            font-size: 1.1em;
+            width: 100%;
+        }
+
+        /* Ajustar el tamaño de los cargos */
+        .miembro p {
+            min-height: 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Efecto hover */
         .miembro:hover {
             background: rgb(83, 179, 90);
         }
@@ -128,6 +167,7 @@
             background: rgb(83, 179, 90);
         }
 
+        /* Botón de detalle */
         .btn-detalle {
             display: block;
             margin: 10px auto;
@@ -343,4 +383,5 @@
     <!--<script src="./js/main.js"></script>-->
 </body>
 </html>
+
 
