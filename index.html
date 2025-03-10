@@ -30,25 +30,33 @@
     <section id="equipo" class="equipo">
         <h2>Equipo de Candidatura</h2>
     
+        <section id="equipo" class="equipo">
+        <h2>Equipo de Candidatura</h2>
+    
         <div class="grupo">
             <div class="miembros">
                 <div class="miembro" data-id="maria">
                     <img src="./img/maria.jpg" alt="María Sebastía Gómez">
                     <h3>MARÍA SEBASTIÁ GÓMEZ</h3>
                     <p>Diputada 1º (Vicedecana)</p>
+                    <button onclick="toggleDetalleMiembro(this, 'maria')">Ver más</button>
+                    <div class="detalle-miembro"></div>
                 </div>
                 <div class="miembro" data-id="josefina">
                     <img src="./img/joseFina.jpg" alt="Josefina Rodríguez">
                     <h3>JOSEFINA Mª PURIFICACIÓN RODRÍGUEZ GARCÍA</h3>
                     <p>Diputada 2º</p>
+                    <button onclick="toggleDetalleMiembro(this, 'josefina')">Ver más</button>
+                    <div class="detalle-miembro"></div>
                 </div>
                 <div class="miembro" data-id="guillermo">
                     <img src="./img/guillermo.jpg" alt="Guillermo Sangüesa">
                     <h3>GUILLERMO SANGÜESA TERUEL</h3>
                     <p>Diputado 3º</p>
+                    <button onclick="toggleDetalleMiembro(this, 'guillermo')">Ver más</button>
+                    <div class="detalle-miembro"></div>
                 </div>
             </div>
-            <div class="detalle-miembro"></div>
         </div>
     
         <div class="grupo">
@@ -57,19 +65,24 @@
                     <img src="./img/cristina.jpg" alt="Cristina Sancho">
                     <h3>CRISTINA SANCHO MARQUÉS</h3>
                     <p>Diputada 4º</p>
+                    <button onclick="toggleDetalleMiembro(this, 'cristina')">Ver más</button>
+                    <div class="detalle-miembro"></div>
                 </div>
                 <div class="miembro" data-id="javier">
                     <img src="./img/javier.jpg" alt="Francisco Javier Serra">
                     <h3>FRANCISCO JAVIER SERRA OCHOA</h3>
                     <p>Diputado 5º</p>
+                    <button onclick="toggleDetalleMiembro(this, 'javier')">Ver más</button>
+                    <div class="detalle-miembro"></div>
                 </div>
                 <div class="miembro" data-id="pedro">
                     <img src="./img/pedro.jpg" alt="Pedro Pablo Olucha">
                     <h3>PEDRO PABLO OLUCHA MARZÁ</h3>
                     <p>Tesorero</p>
+                    <button onclick="toggleDetalleMiembro(this, 'pedro')">Ver más</button>
+                    <div class="detalle-miembro"></div>
                 </div>
             </div>
-            <div class="detalle-miembro"></div>
         </div>
     
         <div class="grupo">
@@ -78,9 +91,10 @@
                     <img src="./img/veronica.jpg" alt="Verónica Ramos">
                     <h3>VERÓNICA RAMOS RUBERT</h3>
                     <p>Bibliotecaria</p>
+                    <button onclick="toggleDetalleMiembro(this, 'veronica')">Ver más</button>
+                    <div class="detalle-miembro"></div>
                 </div>
             </div>
-            <div class="detalle-miembro"></div>
         </div>
     </section>
 
@@ -216,7 +230,7 @@
             });
         }
     
-        function toggleDetalleMiembro(element, id) {
+        function toggleDetalleMiembro(button, id) {
             console.log(`🟢 toggleDetalleMiembro ejecutado para ${id}`);
     
             const detalles = {
@@ -277,29 +291,17 @@
                             <p>Considero que debemos defender una atención cercana y personal con los clientes, tanto del turno como los privados, solamente así, lograremos mantener y aumentar la excelencia en la defensa de los intereses que nos son confiados.</p>`
             };
     
-            // Encontrar el grupo del miembro seleccionado
-            const grupo = element.closest('.grupo');
-            const infoDiv = grupo.querySelector(".detalle-miembro");
-    
-            // Si el mismo miembro ya está abierto, se oculta
-            if (infoDiv.style.display === "block" && infoDiv.getAttribute("data-miembro") === id) {
-                console.log(`❌ Cerrando info de ${id}`);
-                infoDiv.style.display = "none";
-                document.querySelectorAll('.miembro').forEach(m => m.classList.remove('activo'));
-                return;
+            const miembro = button.closest('.miembro');
+            const detalleDiv = miembro.querySelector('.detalle-miembro');
+
+            // Si ya está abierto, se oculta
+            if (detalleDiv.innerHTML) {
+                detalleDiv.innerHTML = "";
+                detalleDiv.style.display = "none";
+            } else {
+                detalleDiv.innerHTML = detalles[id] || "<p>Información no disponible.</p>";
+                detalleDiv.style.display = "block";
             }
-    
-            // Mostrar la información
-            console.log(`✅ Mostrando info de ${id}`);
-            infoDiv.innerHTML = detalles[id] || "<p>Información no disponible.</p>";
-            infoDiv.style.display = "block";
-            infoDiv.setAttribute("data-miembro", id);
-    
-            // Quitar la clase activo de todos los miembros
-            document.querySelectorAll('.miembro').forEach(m => m.classList.remove('activo'));
-    
-            // Agregar la clase activo al miembro seleccionado
-            element.classList.add('activo');
         }
     
         function manejarCambioDeHash() {
